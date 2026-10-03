@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruang Aman — Mengenali dan Melawan Bullying di Kampus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1E2A44;
+    --ink-soft:#4A5670;
+    --paper:#F2F0EA;
+    --paper-raised:#FBFAF7;
+    --line:#D8D4C8;
+    --gold:#B9852E;
+    --gold-soft:#EFE1C6;
+    --teal:#33685A;
+    --teal-soft:#DCEAE4;
+    --coral:#B3492E;
+    --coral-soft:#F3DED4;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    color:var(--ink);
+    margin:0;
+  }
+  p{margin:0 0 1rem;}
+  .layout{
+    display:grid;
+    grid-template-columns:240px 1fr;
+    min-height:100vh;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .sidebar{
+    padding:2.5rem 1.5rem;
+    border-right:1px solid var(--line);
+    position:sticky;
+    top:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    gap:2.5rem;
+  }
+  .brand{display:flex;flex-direction:column;gap:.25rem;}
+  .brand .mark{
+    width:34px;height:34px;border-radius:50%;
+    background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--paper);font-family:'Fraunces',serif;font-size:16px;
+    margin-bottom:.5rem;
+  }
+  .brand .name{font-family:'Fraunces',serif;font-size:19px;color:var(--ink);}
+  .brand .tag{font-size:12.5px;color:var(--ink-soft);}
+  nav{display:flex;flex-direction:column;gap:.2rem;}
+  nav button{
+    all:unset;
+    box-sizing:border-box;
+    cursor:pointer;
+    padding:.6rem .7rem;
+    border-radius:6px;
+    font-size:14.5px;
+    line-height:1.2;
+    color:var(--ink-soft);
+    display:block;
+  }
+  nav button:hover{background:var(--paper-raised);}
+  nav button.active{background:var(--ink);color:var(--paper);}
+  .sidebar-foot{margin-top:auto;font-size:12px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:1rem;}
+  .page-credit{font-size:12.5px;color:var(--ink-soft);margin:0;}
+  main{padding:3.5rem 4rem;max-width:760px;}
+  section.view{display:none;}
+  section.view.active{display:block;animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .eyebrow{font-size:13px;color:var(--gold);margin-bottom:.6rem;}
+  h1.page-title{font-size:38px;line-height:1.15;margin-bottom:1rem;max-width:14ch;}
+  .lede{font-size:17px;color:var(--ink-soft);max-width:56ch;margin-bottom:2rem;}
+  .card-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0;}
+  .mini-card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1.2rem 1.3rem;
+    cursor:pointer;
+  }
+  .mini-card:hover{border-color:var(--gold);}
+  .mini-card h3{font-size:16px;margin-bottom:.4rem;}
+  .mini-card p{font-size:13.5px;color:var(--ink-soft);margin:0;}
+  .divider{height:1px;background:var(--line);margin:2.4rem 0;}
+  .block{margin-bottom:2.2rem;}
+  .block h2{font-size:22px;margin-bottom:.7rem;}
+  .block p{font-size:15.5px;color:var(--ink-soft);max-width:60ch;}
+  .form-list{list-style:none;padding:0;margin:0 0 1rem;}
+  .form-list li{
+    display:flex;gap:.9rem;
+    padding:.9rem 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+  }
+  .form-list li:last-child{border-bottom:none;}
+  .form-list .tag2{
+    font-family:'Fraunces',serif;
+    font-size:13px;color:var(--teal);
+    min-width:118px;
+    padding-top:1px;
+  }
+  .form-list span.desc{color:var(--ink-soft);}
+  .impact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin:1.2rem 0 2rem;}
+  .impact-grid div{
+    background:var(--teal-soft);
+    border-radius:10px;
+    padding:1rem 1.1rem;
+    font-size:14px;
+    color:#1E4238;
+  }
+  .impact-grid div b{display:block;font-family:'Fraunces',serif;font-size:14.5px;margin-bottom:.3rem;color:#173129;}
+  .roles{display:flex;flex-direction:column;gap:.7rem;margin:1.2rem 0 2rem;}
+  .role{
+    display:flex;gap:1rem;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:.9rem 1.1rem;
+    background:var(--paper-raised);
+  }
+  .role .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--gold);margin-top:7px;flex-shrink:0;
+  }
+  .role b{font-family:'Fraunces',serif;font-size:15px;display:block;margin-bottom:.15rem;}
+  .role span{font-size:14px;color:var(--ink-soft);}
+
+  .scenario-nav{display:flex;gap:.5rem;margin-bottom:1.8rem;flex-wrap:wrap;}
+  .scenario-nav button{
+    all:unset;cursor:pointer;
+    padding:.5rem 1rem;
+    border:1px solid var(--line);
+    border-radius:20px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+  }
+  .scenario-nav button.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .scenario{display:none;}
+  .scenario.active{display:block;}
+  .scenario-setup{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:1.4rem 1.6rem;
+    margin-bottom:1.4rem;
+    font-size:15.5px;
+  }
+  .scenario-setup .who{font-size:13px;color:var(--gold);margin-bottom:.5rem;}
+  .choices{display:flex;flex-direction:column;gap:.7rem;}
+  .choice-btn{
+    all:unset;cursor:pointer;
+    display:block;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1rem 1.2rem;
+    font-size:15px;
+    background:var(--paper-raised);
+  }
+  .choice-btn:hover{border-color:var(--ink);}
+  .choice-btn.picked-good{border-color:var(--teal);background:var(--teal-soft);}
+  .choice-btn.picked-bad{border-color:var(--coral);background:var(--coral-soft);}
+  .feedback{
+    margin-top:1rem;
+    padding:1.1rem 1.3rem;
+    border-radius:10px;
+    font-size:14.5px;
+    display:none;
+  }
+  .feedback.show{display:block;}
+  .feedback.good{background:var(--teal-soft);color:#173129;}
+  .feedback.bad{background:var(--coral-soft);color:#4A1B0C;}
+  .feedback b{display:block;font-family:'Fraunces',serif;font-size:15px;margin-bottom:.3rem;}
+  .reset-link{
+    all:unset;cursor:pointer;
+    font-size:13.5px;color:var(--ink-soft);
+    text-decoration:underline;
+    margin-top:1rem;
+    display:inline-block;
+  }
+
+  .quiz-progress{display:flex;gap:5px;margin-bottom:1.6rem;}
+  .quiz-progress span{height:4px;flex:1;background:var(--line);border-radius:2px;}
+  .quiz-progress span.done{background:var(--gold);}
+  .quiz-progress span.now{background:var(--ink);}
+  .q-block{display:none;}
+  .q-block.active{display:block;}
+  .q-num{font-size:13px;color:var(--gold);margin-bottom:.5rem;}
+  .q-text{font-size:19px;margin-bottom:1.2rem;max-width:52ch;font-family:'Fraunces',serif;}
+  .q-options{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.2rem;}
+  .q-opt{
+    all:unset;cursor:pointer;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:.85rem 1.1rem;
+    font-size:15px;
+    background:var(--paper-raised);
+  }
+  .q-opt:hover{border-color:var(--ink);}
+  .q-opt.correct{border-color:var(--teal);background:var(--teal-soft);}
+  .q-opt.wrong{border-color:var(--coral);background:var(--coral-soft);}
+  .q-explain{
+    display:none;
+    background:var(--paper-raised);
+    border-left:3px solid var(--gold);
+    border-radius:0;
+    padding:.9rem 1.1rem;
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin-bottom:1.2rem;
+  }
+  .q-explain.show{display:block;}
+  .q-actions{display:flex;justify-content:flex-end;}
+  .next-btn{
+    all:unset;cursor:pointer;
+    background:var(--ink);color:var(--paper);
+    padding:.65rem 1.4rem;
+    border-radius:8px;
+    font-size:14px;
+    display:none;
+  }
+  .next-btn.show{display:inline-block;}
+  .quiz-result{display:none;text-align:left;}
+  .quiz-result.show{display:block;}
+  .quiz-result .score{font-family:'Fraunces',serif;font-size:44px;margin-bottom:.3rem;}
+  .quiz-result p{color:var(--ink-soft);max-width:52ch;}
+  .retry-btn{
+    all:unset;cursor:pointer;
+    border:1px solid var(--ink);
+    padding:.6rem 1.3rem;
+    border-radius:8px;
+    font-size:14px;
+    margin-top:1rem;
+    display:inline-block;
+  }
+
+  .help-card{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:1.3rem 1.5rem;
+    background:var(--paper-raised);
+    margin-bottom:1rem;
+  }
+  .help-card h3{font-size:16px;margin-bottom:.4rem;}
+  .help-card p{font-size:14.5px;color:var(--ink-soft);margin-bottom:0;}
+  .note-box{
+    background:var(--gold-soft);
+    border-radius:10px;
+    padding:1.1rem 1.3rem;
+    font-size:14px;
+    color:#412402;
+    margin-top:1.6rem;
+  }
+
+  .topbar{display:none;}
+
+  @media (max-width:880px){
+    .layout{grid-template-columns:1fr;}
+    .sidebar{
+      position:sticky;top:0;z-index:10;
+      height:auto;
+      flex-direction:row;
+      align-items:center;
+      padding:1rem 1.2rem;
+      border-right:none;
+      border-bottom:1px solid var(--line);
+      background:var(--paper);
+      overflow-x:auto;
+      gap:1.5rem;
+    }
+    .brand{display:none;}
+    nav{flex-direction:row;gap:.3rem;}
+    nav button{white-space:nowrap;}
+    .sidebar-foot{display:none;}
+    main{padding:2rem 1.3rem;}
+    .card-row{grid-template-columns:1fr;}
+    .impact-grid{grid-template-columns:1fr;}
+    h1.page-title{font-size:29px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="mark">RA</div>
+      <div class="name">Ruang Aman</div>
+      <div class="tag">Modul anti-bullying kampus</div>
+    </div>
+    <nav id="nav">
+      <button data-view="beranda" class="active">Beranda</button>
+      <button data-view="materi">Materi</button>
+      <button data-view="kasus">Studi kasus</button>
+      <button data-view="kuis">Kuis</button>
+      <button data-view="bantuan">Bantuan</button>
+    </nav>
+    <div class="sidebar-foot">Untuk mahasiswa &amp; organisasi kampus</div>
+  </aside>
+
+  <main>
+
+    <section class="view active" id="view-beranda">
+      <h1 class="page-title">Mengenali dan melawan bullying di kampus</h1>
+      <p class="lede">Bullying di lingkungan kampus sering tersembunyi di balik istilah "candaan", "tradisi organisasi", atau "biar mental kuat". Modul ini membantu kamu mengenali polanya, memahami dampaknya, dan tahu harus berbuat apa — sebagai korban, saksi, atau bagian dari organisasi.</p>
+
+      <div class="card-row">
+        <div class="mini-card" data-goto="materi">
+          <h3>Apa itu bullying?</h3>
+          <p>Definisi, ciri-ciri, dan bentuk-bentuknya di lingkungan kampus.</p>
+        </div>
+        <div class="mini-card" data-goto="kasus">
+          <h3>Studi kasus</h3>
+          <p>Tiga skenario nyata di organisasi, kelompok tugas, dan grup chat.</p>
+        </div>
+        <div class="mini-card" data-goto="kuis">
+          <h3>Uji pemahaman</h3>
+          <p>Enam pertanyaan singkat untuk mengecek pemahamanmu.</p>
+        </div>
+        <div class="mini-card" data-goto="bantuan">
+          <h3>Butuh bantuan?</h3>
+          <p>Langkah melapor dan layanan pendukung yang bisa dihubungi.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="block">
+        <h2>Kenapa ini relevan di kampus</h2>
+        <p>Bullying tidak berhenti setelah SMA. Di kampus, bentuknya bergeser: senioritas dalam organisasi atau kegiatan orientasi, pengucilan dalam kelompok tugas, komentar merendahkan di grup chat kelas, sampai tekanan sosial di media sosial. Karena dibungkus dengan alasan "budaya" atau "proses", pola ini sering tidak disadari sebagai bullying — baik oleh pelaku maupun oleh orang di sekitarnya.</p>
+      </div>
+
+      <div class="divider"></div>
+      <p class="page-credit">Dibuat oleh Kelompok 7 — Kelas 01SMJP001 · Prodi Manajemen, Universitas Pamulang</p>
+    </section>
+
+    <section class="view" id="view-materi">
+      <h1 class="page-title">Memahami bullying</h1>
+      <p class="lede">Sebelum bisa merespons dengan tepat, penting untuk mengenali ciri dan bentuknya secara jelas — supaya tidak salah menyebut, dan tidak salah mengabaikan.</p>
+
+      <div class="block">
+        <h2>Tiga ciri utama</h2>
+        <p>Sebuah perilaku disebut bullying ketika memenuhi tiga hal ini secara bersamaan, bukan sekadar satu kejadian yang tidak menyenangkan.</p>
+        <ul class="form-list">
+          <li><span class="tag2">Berulang</span><span class="desc">Terjadi lebih dari sekali, bukan konflik satu kali yang lalu selesai.</span></li>
+          <li><span class="tag2">Ketimpangan kuasa</span><span class="desc">Pelaku punya posisi lebih kuat — senioritas, jabatan organisasi, popularitas, atau jumlah massa.</span></li>
+          <li><span class="tag2">Disengaja</span><span class="desc">Ada niat menyakiti, merendahkan, atau mengontrol, meski dibungkus sebagai "bercanda".</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h2>Bentuk-bentuk di lingkungan kampus</h2>
+        <ul class="form-list">
+          <li><span class="tag2">Verbal</span><span class="desc">Ejekan, julukan merendahkan, komentar tentang penampilan atau logat, dilontarkan berulang di depan umum.</span></li>
+          <li><span class="tag2">Relasional</span><span class="desc">Pengucilan dari kelompok tugas, tidak diajak diskusi, digosipkan dalam circle pertemanan atau organisasi.</span></li>
+          <li><span class="tag2">Senioritas</span><span class="desc">Perintah tidak masuk akal dari senior di organisasi atau kegiatan orientasi, dengan ancaman konsekuensi sosial jika menolak.</span></li>
+          <li><span class="tag2">Siber</span><span class="desc">Screenshot pribadi disebar, komentar merendahkan di grup chat kelas atau media sosial, dibuat trending topic negatif oleh circle tertentu.</span></li>
+          <li><span class="tag2">Akademik</span><span class="desc">Sengaja dijauhkan dari informasi tugas, hasil kerja diklaim orang lain, dipojokkan saat presentasi kelompok.</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h2>Dampak yang sering luput diperhatikan</h2>
+        <div class="impact-grid">
+          <div><b>Akademik</b>Motivasi belajar menurun, mulai menghindari kelas atau kegiatan kampus tertentu.</div>
+          <div><b>Psikologis</b>Cemas berkepanjangan, kepercayaan diri turun, sulit mempercayai orang baru.</div>
+          <div><b>Sosial</b>Menarik diri dari pertemanan dan organisasi, merasa kampus bukan tempat yang aman.</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Empat peran dalam satu situasi</h2>
+        <p>Setiap kejadian bullying melibatkan lebih dari sekadar pelaku dan korban. Memahami peran ini membantu kamu sadar posisi kamu sendiri.</p>
+        <div class="roles">
+          <div class="role"><div class="dot"></div><div><b>Pelaku</b><span>Pihak yang melakukan tindakan dengan pola berulang dan disengaja.</span></div></div>
+          <div class="role"><div class="dot"></div><div><b>Korban</b><span>Pihak yang menerima dampak langsung, sering merasa tidak berdaya untuk melawan.</span></div></div>
+          <div class="role"><div class="dot"></div><div><b>Saksi diam (bystander)</b><span>Melihat atau mengetahui kejadian, tapi memilih tidak bertindak — sering karena takut ikut jadi sasaran.</span></div></div>
+          <div class="role"><div class="dot"></div><div><b>Penengah (upstander)</b><span>Memilih bertindak: menegur, mendampingi korban, atau melaporkan ke pihak yang berwenang.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-kasus">
+      <h1 class="page-title">Studi kasus interaktif</h1>
+      <p class="lede">Pilih satu tanggapan di setiap skenario. Tidak ada jawaban yang sempurna, tapi ada yang lebih membantu menghentikan pola bullying daripada yang lain.</p>
+
+      <div class="scenario-nav" id="scenario-nav">
+        <button data-sc="1" class="active">Kasus 1 · Kelompok tugas</button>
+        <button data-sc="2">Kasus 2 · Organisasi</button>
+        <button data-sc="3">Kasus 3 · Grup chat</button>
+      </div>
+
+      <div class="scenario active" id="sc-1" data-answer="b">
+        <div class="scenario-setup">
+          <div class="who">Kelompok tugas mata kuliah</div>
+          Dalam kelompok tugas, satu anggota — sebut saja Budi — selalu diberi bagian paling sedikit dan jarang diajak diskusi di grup chat. Saat presentasi, teman-teman lain saling menyalahkan Budi atas hasil yang kurang maksimal, padahal dia tidak pernah dilibatkan sejak awal. Kamu satu kelompok dengannya.
+        </div>
+        <div class="choices">
+          <button class="choice-btn" data-result="bad">Diam saja, karena bukan urusanmu dan tugas sudah selesai dikumpulkan.</button>
+          <button class="choice-btn" data-result="good">Ajak bicara Budi secara pribadi, lalu usulkan ke kelompok untuk membagi tugas ulang secara lebih adil ke depannya.</button>
+          <button class="choice-btn" data-result="bad">Ikut menyalahkan Budi di depan dosen supaya nilai kelompok tidak terlalu turun.</button>
+        </div>
+        <div class="feedback"></div>
+        <button class="reset-link">Coba pilihan lain</button>
+      </div>
+
+      <div class="scenario" id="sc-2" data-answer="b">
+        <div class="scenario-setup">
+          <div class="who">Organisasi kemahasiswaan</div>
+          Sebagai anggota baru, kamu diminta senior untuk menyelesaikan tugas administratif yang sebenarnya bukan tanggung jawabmu, dengan ancaman "kalau nggak mau, nggak usah ikut acara organisasi lagi". Kamu tahu beberapa anggota baru lain mengalami hal serupa tapi tidak berani bicara.
+        </div>
+        <div class="choices">
+          <button class="choice-btn" data-result="bad">Turuti saja permintaannya supaya tidak dikucilkan dari organisasi.</button>
+          <button class="choice-btn" data-result="good">Kumpulkan cerita dari anggota lain yang mengalami hal sama, lalu laporkan bersama ke pembina organisasi atau bagian kemahasiswaan.</button>
+          <button class="choice-btn" data-result="bad">Keluar dari organisasi tanpa memberi tahu siapa pun alasannya.</button>
+        </div>
+        <div class="feedback"></div>
+        <button class="reset-link">Coba pilihan lain</button>
+      </div>
+
+      <div class="scenario" id="sc-3" data-answer="b">
+        <div class="scenario-setup">
+          <div class="who">Grup chat kelas</div>
+          Di grup chat kelas, satu mahasiswa terus-menerus jadi bahan ejekan karena caranya bertanya saat kuliah. Beberapa orang mengirim stiker dan komentar merendahkan setiap kali dia mengetik. Kamu ada di grup itu dan belum pernah ikut berkomentar.
+        </div>
+        <div class="choices">
+          <button class="choice-btn" data-result="bad">Tetap diam di grup, karena kamu tidak ikut mengejek jadi merasa tidak bersalah.</button>
+          <button class="choice-btn" data-result="good">Tegur langsung di grup bahwa itu tidak lucu, dan hubungi orang tersebut secara pribadi untuk memastikan dia baik-baik saja.</button>
+          <button class="choice-btn" data-result="bad">Keluar diam-diam dari grup supaya tidak terlibat.</button>
+        </div>
+        <div class="feedback"></div>
+        <button class="reset-link">Coba pilihan lain</button>
+      </div>
+    </section>
+
+    <section class="view" id="view-kuis">
+      <h1 class="page-title">Uji pemahaman</h1>
+      <p class="lede">Enam pertanyaan untuk mengecek seberapa jauh kamu mengenali dan tahu merespons bullying di kampus.</p>
+
+      <div class="quiz-progress" id="quiz-progress"></div>
+
+      <div id="quiz-questions"></div>
+
+      <div class="quiz-result" id="quiz-result">
+        <div class="score" id="quiz-score">0/6</div>
+        <p id="quiz-summary"></p>
+        <button class="retry-btn" id="quiz-retry">Ulangi kuis</button>
+      </div>
+    </section>
+
+    <section class="view" id="view-bantuan">
+      <h1 class="page-title">Kalau kamu atau temanmu mengalami ini</h1>
+      <p class="lede">Melapor bukan tanda lemah. Ini langkah paling efektif untuk menghentikan pola yang berulang.</p>
+
+      <div class="help-card">
+        <h3>1. Layanan konseling kampus</h3>
+        <p>Sebagian besar kampus punya unit bimbingan konseling atau layanan kesehatan mental mahasiswa. Ini biasanya jalur tercepat dan paling memahami konteks kampusmu — cek portal akademik atau tanyakan ke bagian kemahasiswaan.</p>
+      </div>
+      <div class="help-card">
+        <h3>2. Dosen wali atau pihak kemahasiswaan</h3>
+        <p>Untuk kasus yang melibatkan organisasi, kelompok tugas, atau kegiatan resmi kampus, laporkan ke dosen pembimbing akademik, ketua program studi, atau bagian kemahasiswaan agar bisa ditindaklanjuti secara resmi.</p>
+      </div>
+      <div class="help-card">
+        <h3>3. Layanan pengaduan resmi pemerintah</h3>
+        <p>Kementerian Kesehatan menyediakan kanal pengaduan perundungan di perundungan.kemkes.go.id bagi yang membutuhkan jalur pelaporan di luar kampus.</p>
+      </div>
+      <div class="help-card">
+        <h3>4. Cerita ke orang yang dipercaya</h3>
+        <p>Mulai dari teman dekat, keluarga, atau mahasiswa lain yang bisa dipercaya. Tidak menghadapi situasi ini sendirian membuat langkah-langkah berikutnya terasa lebih ringan.</p>
+      </div>
+
+      <div class="note-box">
+        Jika situasinya membuatmu merasa dalam bahaya atau sangat tertekan, segera hubungi layanan konseling kampus atau layanan kesehatan terdekat — jangan tunggu sampai situasinya memburuk.
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var navButtons = document.querySelectorAll('#nav button');
+  var views = document.querySelectorAll('.view');
+  function showView(id){
+    views.forEach(function(v){ v.classList.toggle('active', v.id === 'view-' + id); });
+    navButtons.forEach(function(b){ b.classList.toggle('active', b.dataset.view === id); });
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+  navButtons.forEach(function(b){
+    b.addEventListener('click', function(){ showView(b.dataset.view); });
+  });
+  document.querySelectorAll('.mini-card').forEach(function(c){
+    c.addEventListener('click', function(){ showView(c.dataset.goto); });
+  });
+
+  var scNav = document.querySelectorAll('#scenario-nav button');
+  var scenarios = document.querySelectorAll('.scenario');
+  scNav.forEach(function(b){
+    b.addEventListener('click', function(){
+      scNav.forEach(function(x){ x.classList.remove('active'); });
+      b.classList.add('active');
+      scenarios.forEach(function(s){ s.classList.toggle('active', s.id === 'sc-' + b.dataset.sc); });
+    });
+  });
+
+  var feedbackText = {
+    good: {
+      1: {title:'Pilihan yang membantu', body:'Menyuarakan langsung ke Rani dan mengusulkan pembagian tugas ulang menghentikan pola pengucilan tanpa membuatnya makin dipojokkan di depan kelompok.'},
+      2: {title:'Pilihan yang membantu', body:'Melapor bersama-sama membuat laporan lebih sulit diabaikan, dan mengurangi risiko satu orang dianggap "cari masalah" sendirian.'},
+      3: {title:'Pilihan yang membantu', body:'Menegur langsung menghentikan pola di depan semua anggota grup, dan mengecek kondisi korban secara pribadi memastikan dia tidak merasa sendirian.'}
+    },
+    bad: {
+      1: {title:'Belum menyelesaikan masalah', body:'Diam membuat pola pengucilan Rani terus berulang di tugas-tugas berikutnya, dan ikut menyalahkannya justru memperkuat posisi dia sebagai sasaran.'},
+      2: {title:'Belum menyelesaikan masalah', body:'Menuruti permintaan atau keluar diam-diam tidak menghentikan pola senioritas ini untuk anggota baru berikutnya.'},
+      3: {title:'Belum menyelesaikan masalah', body:'Diam atau keluar dari grup tidak menghentikan ejekan yang terus berlanjut untuk orang tersebut.'}
+    }
+  };
+  document.querySelectorAll('.scenario').forEach(function(sc){
+    var scNum = sc.id.split('-')[1];
+    var buttons = sc.querySelectorAll('.choice-btn');
+    var feedback = sc.querySelector('.feedback');
+    var resetLink = sc.querySelector('.reset-link');
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if (btn.disabled) return;
+        var result = btn.dataset.result;
+        buttons.forEach(function(b){
+          b.disabled = true;
+          if (b === btn) b.classList.add(result === 'good' ? 'picked-good' : 'picked-bad');
+        });
+        var info = feedbackText[result][scNum];
+        feedback.innerHTML = '<b>' + info.title + '</b>' + info.body;
+        feedback.className = 'feedback show ' + result;
+      });
+    });
+    resetLink.addEventListener('click', function(){
+      buttons.forEach(function(b){ b.disabled = false; b.classList.remove('picked-good','picked-bad'); });
+      feedback.className = 'feedback';
+      feedback.innerHTML = '';
+    });
+  });
+
+  var quizData = [
+    {
+      q: 'Apa yang membedakan bullying dari konflik biasa antar teman?',
+      options: [
+        'Bullying hanya terjadi antara laki-laki',
+        'Bullying melibatkan pola berulang, ketimpangan kuasa, dan kesengajaan',
+        'Bullying selalu melibatkan kekerasan fisik',
+        'Bullying hanya terjadi di media sosial'
+      ],
+      correct: 1,
+      explain: 'Konflik biasa bisa terjadi sekali dan selesai dengan komunikasi setara. Bullying punya pola berulang, pihak yang lebih kuat, dan niat menyakiti.'
+    },
+    {
+      q: 'Senior meminta anggota baru mengerjakan tugas pribadinya dengan ancaman dikucilkan dari organisasi. Ini termasuk bentuk bullying apa?',
+      options: [
+        'Bukan bullying, karena bagian dari tradisi organisasi',
+        'Bullying berbasis senioritas atau kekuasaan struktural',
+        'Bullying fisik',
+        'Konflik biasa antar anggota'
+      ],
+      correct: 1,
+      explain: 'Alasan "tradisi" tidak menghilangkan unsur ketimpangan kuasa dan ancaman konsekuensi sosial di dalamnya — ini tetap bullying berbasis senioritas.'
+    },
+    {
+      q: 'Siapa yang disebut "bystander" dalam situasi bullying?',
+      options: [
+        'Orang yang melakukan tindakan bullying',
+        'Orang yang menjadi korban',
+        'Orang yang mengetahui kejadian tapi memilih tidak bertindak',
+        'Orang yang melapor ke pihak berwenang'
+      ],
+      correct: 2,
+      explain: 'Bystander adalah saksi yang diam. Ketika seorang saksi memilih bertindak, perannya berubah menjadi upstander.'
+    },
+    {
+      q: 'Dampak bullying yang paling sering luput disadari oleh lingkungan sekitar korban adalah?',
+      options: [
+        'Penurunan motivasi belajar dan penarikan diri secara sosial',
+        'Korban langsung pindah kampus',
+        'Korban selalu menunjukkan kemarahan secara terbuka',
+        'Tidak ada dampak jangka panjang'
+      ],
+      correct: 0,
+      explain: 'Dampaknya sering muncul diam-diam: menghindari kelas, menarik diri dari pertemanan, dan motivasi akademik yang menurun — bukan selalu reaksi yang terlihat jelas.'
+    },
+    {
+      q: 'Kamu melihat temanmu terus-menerus diejek di grup chat kelas. Respons yang paling membantu adalah?',
+      options: [
+        'Diam saja karena kamu tidak ikut mengejek',
+        'Keluar dari grup supaya tidak terlibat',
+        'Menegur di grup dan mengecek kondisi temanmu secara pribadi',
+        'Membalas ejekan dengan ejekan serupa ke pelaku'
+      ],
+      correct: 2,
+      explain: 'Menegur langsung menghentikan pola di depan semua orang, dan mengecek kondisi korban secara pribadi memastikan dia merasa didukung.'
+    },
+    {
+      q: 'Ke mana sebaiknya mahasiswa melaporkan bullying yang terjadi dalam kegiatan organisasi resmi kampus?',
+      options: [
+        'Hanya membicarakannya di media sosial pribadi',
+        'Pembina organisasi, dosen wali, atau bagian kemahasiswaan',
+        'Tidak perlu dilaporkan karena bagian dari proses organisasi',
+        'Menunggu masalah selesai dengan sendirinya'
+      ],
+      correct: 1,
+      explain: 'Jalur resmi seperti pembina organisasi, dosen wali, atau bagian kemahasiswaan punya wewenang untuk menindaklanjuti secara struktural.'
+    }
+  ];
+
+  var qContainer = document.getElementById('quiz-questions');
+  var progressEl = document.getElementById('quiz-progress');
+  var currentQ = 0;
+  var score = 0;
+  var answered = [];
+
+  quizData.forEach(function(){
+    var dot = document.createElement('span');
+    progressEl.appendChild(dot);
+  });
+
+  function renderQuiz(){
+    qContainer.innerHTML = '';
+    quizData.forEach(function(item, idx){
+      var block = document.createElement('div');
+      block.className = 'q-block' + (idx === currentQ ? ' active' : '');
+      block.dataset.idx = idx;
+
+      var num = document.createElement('div');
+      num.className = 'q-num';
+      num.textContent = 'Pertanyaan ' + (idx + 1) + ' dari ' + quizData.length;
+      block.appendChild(num);
+
+      var qt = document.createElement('div');
+      qt.className = 'q-text';
+      qt.textContent = item.q;
+      block.appendChild(qt);
+
+      var optWrap = document.createElement('div');
+      optWrap.className = 'q-options';
+      item.options.forEach(function(opt, oIdx){
+        var b = document.createElement('button');
+        b.className = 'q-opt';
+        b.textContent = opt;
+        b.addEventListener('click', function(){ handleAnswer(idx, oIdx, block); });
+        optWrap.appendChild(b);
+      });
+      block.appendChild(optWrap);
+
+      var explain = document.createElement('div');
+      explain.className = 'q-explain';
+      explain.textContent = item.explain;
+      block.appendChild(explain);
+
+      var actions = document.createElement('div');
+      actions.className = 'q-actions';
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'next-btn';
+      nextBtn.textContent = idx === quizData.length - 1 ? 'Lihat hasil' : 'Lanjut';
+      nextBtn.addEventListener('click', function(){
+        if (idx === quizData.length - 1) {
+          showResult();
+        } else {
+          currentQ = idx + 1;
+          renderQuiz();
+        }
+      });
+      actions.appendChild(nextBtn);
+      block.appendChild(actions);
+
+      qContainer.appendChild(block);
+    });
+    updateProgress();
+  }
+
+  function handleAnswer(qIdx, oIdx, block){
+    if (answered[qIdx] !== undefined) return;
+    answered[qIdx] = oIdx;
+    var isCorrect = oIdx === quizData[qIdx].correct;
+    if (isCorrect) score++;
+    var opts = block.querySelectorAll('.q-opt');
+    opts.forEach(function(o, i){
+      o.disabled = true;
+      if (i === quizData[qIdx].correct) o.classList.add('correct');
+      else if (i === oIdx) o.classList.add('wrong');
+    });
+    block.querySelector('.q-explain').classList.add('show');
+    block.querySelector('.next-btn').classList.add('show');
+    updateProgress();
+  }
+
+  function updateProgress(){
+    var dots = progressEl.querySelectorAll('span');
+    dots.forEach(function(d, i){
+      d.className = '';
+      if (answered[i] !== undefined) d.classList.add('done');
+      else if (i === currentQ) d.classList.add('now');
+    });
+  }
+
+  function showResult(){
+    qContainer.style.display = 'none';
+    var resultEl = document.getElementById('quiz-result');
+    resultEl.classList.add('show');
+    document.getElementById('quiz-score').textContent = score + '/' + quizData.length;
+    var msg;
+    if (score === quizData.length) msg = 'Pemahamanmu tentang bentuk dan respons terhadap bullying di kampus sudah kuat. Coba bagikan modul ini ke teman satu organisasi atau kelompok tugasmu.';
+    else if (score >= quizData.length / 2) msg = 'Sudah cukup baik. Coba tinjau lagi bagian Materi untuk memperjelas bagian yang masih terlewat.';
+    else msg = 'Tidak apa-apa, ini bukan tes nilai. Coba baca ulang bagian Materi dan Studi kasus, lalu ulangi kuis ini.';
+    document.getElementById('quiz-summary').textContent = msg;
+  }
+
+  document.getElementById('quiz-retry').addEventListener('click', function(){
+    currentQ = 0; score = 0; answered = [];
+    document.getElementById('quiz-result').classList.remove('show');
+    qContainer.style.display = '';
+    renderQuiz();
+  });
+
+  renderQuiz();
+})();
+</script>
+
+</body>
+</html>
